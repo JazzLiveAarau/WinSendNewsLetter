@@ -1,0 +1,56 @@
+ToDo.txt
+
+- In some computers or some security programs do not allow the application to create a subdirectory.
+  There is an exception by Download to the directory NeueVersion. Do the following:
+  a. Check in the application if the directory exists. If not try to create the directory with 
+     the necessary permissions. Handle the case when it not is possible
+  b. Create the directory with the installer (already added in the Inno file). 
+     Write comments in the source code that it is necessary that the installer creates 
+	 the directory or that the user creates it.
+  c. Write perhaps instructions in the manual what to do when there is a problem
+
+
+- Remove subdirectory Vorlagen and all code for this. Replaced by Intranet
+
+- Perhaps always download Anhang (PDF program) or remove it. Write more in the manual that one can
+  put files there
+
+-In the manual emphasize that one has first to download the new version and then remove the application
+ before the new version is installed.
+
+- End application if addresses not are loaded. Copy from Addresses
+
+- Add CSV field names to the configuration file. For instance used in _GetAllEmailAdresses
+
+2017-12-27 
+
+Download manual from the server. Add manual to Admin Documents
+
+Remove posters from the Server in Admin Intranet or ....
+
+Make this requirement list available in this program, in Admin and in Intranet 
+
+Check that new version works like for the other applications
+
+Register computer name with Admin and use to select mail addresses
+
+2018-01-06
+
+Add a start menu which is a selector of type of newsletter:
+Concert-Newsletter, Saison-Newsletter, Magazin-Newsletter, Supporter-Newsletter, ConfirmSubscription-Newsletter and Other-Newsletter
+
+Concert-Newsletter: Remove DateTimePicker and let the user select concert
+                    Get Posters (only for coming concerts) from the Concert directories (no more copy to Plakat on the server)
+					Make a new dialog
+
+Saison-Newsletter: Dialog for Concert-Newsletter can probably be used. Just set parameters, get data (saison-program) from server, etc
+
+Magazin-Newsletter: Send newsletter to newspapers/magazines with this program
+                    Make a separate XML file with addresses and default (different) texts for each magazin
+
+ConfirmSubscription-Newsletter: Every new subscription should be confirmed with an email. The same time the Email address will be tested
+
+Supporter-Newsletter: Confirm payment. Add first the amount in the address-program, then send confirmation and message that card will be sent or ...
+
+Other-Newsletter: No construction of subject, no selection of concert
+ 
