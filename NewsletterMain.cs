@@ -19,8 +19,19 @@ namespace SendNewsLetter
     {
         #region FTP passwords
 
+        // Handling of the Server password
+        // ===============================
+        // 1. Add cs file with this content
+        //    public static class PassWord
+        //    {
+        //        public static string Server
+        //        { get { return "ServerPassword"; } }
+        //    } 
+        // 2. Add the following line to the GitHub file .gitignore (in Notepad++)
+        //    PassWord.cs
+
         /// <summary>FTP password for jazzliv1</summary>
-        private string m_ftp_password = "TODO";
+        private string m_ftp_password = PassWord.Server;
 
         #endregion // FTP passwords
 

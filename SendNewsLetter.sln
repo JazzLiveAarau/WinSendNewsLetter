@@ -1,22 +1,24 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2009
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendNewsLetter", "SendNewsLetter.csproj", "{392FD582-C0BD-4EFF-9361-AEAC16583F21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelUtil", "..\Excel\ExcelUtil\ExcelUtil.csproj", "{8AA5D046-8C2D-4F55-ACDC-13154ED3EC0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eml", "..\WinEml\Eml.csproj", "{14181D91-8D90-45D1-944B-C8D8507EAE36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftp", "..\Ftp\Ftp\Ftp.csproj", "{FB55F4A3-2A79-4130-BBDE-71091CB7A7C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncodingTools", "..\WinEncodingTools\EncodingTools\EncodingTools.csproj", "{CA19D4DE-B232-491A-92BF-7BF3A2758694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazzApp", "..\JazzApp\JazzApp\JazzApp.csproj", "{10685CA3-0580-4BFE-85E8-133B59857898}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelUtil", "..\WinExcelUtil\ExcelUtil\ExcelUtil.csproj", "{8AA5D046-8C2D-4F55-ACDC-13154ED3EC0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazzVersion", "..\JazzVersion\JazzVersion\JazzVersion.csproj", "{D3D423FA-05F0-48A3-9FC8-CC6BAB0DBA22}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftp", "..\WinFtp\Ftp\Ftp.csproj", "{FB55F4A3-2A79-4130-BBDE-71091CB7A7C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncodingTools", "..\DetectEncoding\EncodingTools\EncodingTools.csproj", "{CA19D4DE-B232-491A-92BF-7BF3A2758694}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazzFtp", "..\WinJazzFtp\JazzFtp\JazzFtp.csproj", "{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazzFtp", "..\JazzFtp\JazzFtp\JazzFtp.csproj", "{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazzLoginLogout", "..\WinLoginLogout\JazzLoginLogout\JazzLoginLogout.csproj", "{E49676C1-F331-4039-A76A-050B00BC786F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eml", "..\Eml\Eml.csproj", "{14181D91-8D90-45D1-944B-C8D8507EAE36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazzApp", "..\WinJazzApp\JazzApp\JazzApp.csproj", "{10685CA3-0580-4BFE-85E8-133B59857898}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JazzVersion", "..\WinVersion\JazzVersion\JazzVersion.csproj", "{D3D423FA-05F0-48A3-9FC8-CC6BAB0DBA22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +30,14 @@ Global
 		{392FD582-C0BD-4EFF-9361-AEAC16583F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{392FD582-C0BD-4EFF-9361-AEAC16583F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{392FD582-C0BD-4EFF-9361-AEAC16583F21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14181D91-8D90-45D1-944B-C8D8507EAE36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14181D91-8D90-45D1-944B-C8D8507EAE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14181D91-8D90-45D1-944B-C8D8507EAE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14181D91-8D90-45D1-944B-C8D8507EAE36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA19D4DE-B232-491A-92BF-7BF3A2758694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA19D4DE-B232-491A-92BF-7BF3A2758694}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA19D4DE-B232-491A-92BF-7BF3A2758694}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA19D4DE-B232-491A-92BF-7BF3A2758694}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8AA5D046-8C2D-4F55-ACDC-13154ED3EC0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8AA5D046-8C2D-4F55-ACDC-13154ED3EC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AA5D046-8C2D-4F55-ACDC-13154ED3EC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -36,6 +46,14 @@ Global
 		{FB55F4A3-2A79-4130-BBDE-71091CB7A7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB55F4A3-2A79-4130-BBDE-71091CB7A7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB55F4A3-2A79-4130-BBDE-71091CB7A7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E49676C1-F331-4039-A76A-050B00BC786F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E49676C1-F331-4039-A76A-050B00BC786F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E49676C1-F331-4039-A76A-050B00BC786F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E49676C1-F331-4039-A76A-050B00BC786F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{10685CA3-0580-4BFE-85E8-133B59857898}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10685CA3-0580-4BFE-85E8-133B59857898}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10685CA3-0580-4BFE-85E8-133B59857898}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,18 +62,6 @@ Global
 		{D3D423FA-05F0-48A3-9FC8-CC6BAB0DBA22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3D423FA-05F0-48A3-9FC8-CC6BAB0DBA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3D423FA-05F0-48A3-9FC8-CC6BAB0DBA22}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA19D4DE-B232-491A-92BF-7BF3A2758694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA19D4DE-B232-491A-92BF-7BF3A2758694}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA19D4DE-B232-491A-92BF-7BF3A2758694}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA19D4DE-B232-491A-92BF-7BF3A2758694}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7B3D312-BE5B-4FF2-98FE-5CA0071C20CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14181D91-8D90-45D1-944B-C8D8507EAE36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14181D91-8D90-45D1-944B-C8D8507EAE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14181D91-8D90-45D1-944B-C8D8507EAE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14181D91-8D90-45D1-944B-C8D8507EAE36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
