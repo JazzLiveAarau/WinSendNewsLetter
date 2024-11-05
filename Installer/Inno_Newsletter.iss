@@ -11,7 +11,7 @@ UninstallDisplayIcon={app}\SendNewsLetter.exe
 Compression=lzma
 SolidCompression=yes
 OutputDir= NeueVersion
-OutputBaseFilename= SetupJazzLiveAarauNewsletter-version-3-20
+OutputBaseFilename= SetupJazzLiveAarauNewsletter-version-3-21
 
 [Dirs]
 Name: "{app}\Anhang"; Permissions: users-modify

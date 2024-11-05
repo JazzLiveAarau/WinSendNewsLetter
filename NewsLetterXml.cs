@@ -155,6 +155,7 @@ namespace SendNewsLetter
                 string path_file_name_poster = JazzXml.GetPosterMidSize(concert_number);
                 string file_name = Path.GetFileName(path_file_name_poster);
                 current_concert.Poster = file_name;
+                current_concert.Premises = JazzXml.GetAddress(concert_number);
 
                 if (!current_concert.Check(out o_error))
                 {
@@ -329,6 +330,26 @@ namespace SendNewsLetter
             }
 
         } // SetTextBoxBandToNextConcert
+
+        /// <summary>Set the premises text box for the next concert
+        /// <para>1. Get date fom the next concert object. Call of GetNextConcert</para>
+        /// <para>If this object is null, the text box will be empty</para>
+        /// </summary>
+        /// <param name="i_text_box_premises">Text box control for premises</param>
+        public static void SetPremisesToNextConcert(TextBox i_text_box_premises)
+        {
+            JazzConcert next_concert = GetNextConcert();
+
+            if (next_concert != null)
+            {
+                i_text_box_premises.Text = next_concert.Premises;
+            }
+            else
+            {
+                i_text_box_premises.Text = @"";
+            }
+
+        } // SetPremisesToNextConcert
 
         /// <summary>Set the poster for the next concert
         /// <para>1. Get date fom the next concert object. Call of GetNextConcert</para>

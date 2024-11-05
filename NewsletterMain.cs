@@ -661,8 +661,15 @@ namespace SendNewsLetter
                 ret_body_html = ret_body_html + "<br>";
             }
 
+            if (i_newsletter_data.PremisesHtml().Length > 0)
+            {
+                ret_body_html = ret_body_html + i_newsletter_data.PremisesHtml();
+                ret_body_html = ret_body_html + "<br>";
+            }
+
             ret_body_html = ret_body_html + i_newsletter_data.InfoHtml();
             ret_body_html = ret_body_html + "<br>";
+
 
             if (i_newsletter_data.AddReservationText)
             {
@@ -691,6 +698,12 @@ namespace SendNewsLetter
 
             ret_body_txt = ret_body_txt + i_newsletter_data.MessageTxt();
             ret_body_txt = ret_body_txt + "\n\n";
+
+            if (i_newsletter_data.PremisesTxt().Length > 0)
+            {
+                ret_body_txt = ret_body_txt + i_newsletter_data.PremisesTxt();
+                ret_body_txt = ret_body_txt + "\n\n";
+            }
 
             ret_body_txt = ret_body_txt + i_newsletter_data.InfoTxt();
             ret_body_txt = ret_body_txt + "\n\n";

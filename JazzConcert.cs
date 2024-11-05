@@ -37,6 +37,12 @@ namespace SendNewsLetter
         /// <summary>Get and set poster file name</summary>
         public string Poster { get { return m_poster_file_name; } set { m_poster_file_name = value; } }
 
+        /// <summary>Premises name and address</summary>
+        private string m_premises_address = @"";
+
+        /// <summary>Get and set premises name and address</summary>
+        public string Premises { get { return m_premises_address; } set { m_premises_address = value; } }
+
         /// <summary>Checks the member data</summary>
         public bool Check(out string o_error)
         {

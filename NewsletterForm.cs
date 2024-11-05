@@ -103,12 +103,16 @@ namespace SendNewsLetter
         private ToolTip m_tool_tip_update = new ToolTip();
         private ToolTip m_tool_tip_only_downloaded_pics = new ToolTip();
         private ToolTip m_tool_tip_checkbox_with_reservation_text = new ToolTip();
+        private ToolTip m_tool_tip_premises;
         #endregion
 
         private Button m_button_update;
         private CheckBox m_checkbox_only_down_loaded_pics;
         private Label m_label_version;
         private CheckBox m_checkbox_with_reservation_text;
+        private TextBox m_textbox_premises;
+        private Label m_label_premises;
+       
 
         /// <summary>Flag telling if the user manually sets the subject</summary>
         private bool m_update_subject = true;
@@ -182,6 +186,8 @@ namespace SendNewsLetter
             }
 
             NewsLetterXml.SetBandToNextConcert(m_text_box_band);
+
+            NewsLetterXml.SetPremisesToNextConcert(m_textbox_premises);
 
         } // Constructor
 
@@ -269,6 +275,8 @@ namespace SendNewsLetter
             ToolTipUtil.SetDelays(ref m_tool_tip_only_downloaded_pics);
             m_tool_tip_checkbox_with_reservation_text.SetToolTip(this.m_checkbox_with_reservation_text, NewsLetterSettings.Default.ToolTipCheckBoxAddReservation);
             ToolTipUtil.SetDelays(ref m_tool_tip_checkbox_with_reservation_text);
+            m_tool_tip_premises.SetToolTip(this.m_textbox_premises, NewsLetterSettings.Default.ToolTipTextBoxPremises);
+            ToolTipUtil.SetDelays(ref m_tool_tip_premises);
 
         } //  _SetToolTips()
 
@@ -343,6 +351,7 @@ namespace SendNewsLetter
             this.m_textbox_message.Text = " ";
             this.m_checkbox_only_down_loaded_pics.Text = NewsLetterSettings.Default.GuiLabelShowOnlyDownloadedPics;
             this.m_checkbox_with_reservation_text.Text = NewsLetterSettings.Default.GuiLabelAddReservationText;
+            this.m_label_premises.Text = NewsLetterSettings.Default.PremisesLabel;
         }
 
         /// <summary>Set time comboboxes</summary>
@@ -635,6 +644,8 @@ namespace SendNewsLetter
             }
 
             io_newsletter_data.m_band = this.m_text_box_band.Text;
+
+            io_newsletter_data.m_premises = this.m_textbox_premises.Text;
 
             io_newsletter_data.AddReservationText = this.m_checkbox_with_reservation_text.Checked;
 
@@ -984,6 +995,9 @@ namespace SendNewsLetter
             this.m_checkbox_only_down_loaded_pics = new System.Windows.Forms.CheckBox();
             this.m_label_version = new System.Windows.Forms.Label();
             this.m_checkbox_with_reservation_text = new System.Windows.Forms.CheckBox();
+            this.m_textbox_premises = new System.Windows.Forms.TextBox();
+            this.m_label_premises = new System.Windows.Forms.Label();
+            this.m_tool_tip_premises = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.m_picture_logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.m_picture_box)).BeginInit();
             this.SuspendLayout();
@@ -994,9 +1008,9 @@ namespace SendNewsLetter
             this.m_textbox_to.BackColor = System.Drawing.Color.Black;
             this.m_textbox_to.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_textbox_to.ForeColor = System.Drawing.Color.Red;
-            this.m_textbox_to.Location = new System.Drawing.Point(264, 553);
+            this.m_textbox_to.Location = new System.Drawing.Point(370, 511);
             this.m_textbox_to.Name = "m_textbox_to";
-            this.m_textbox_to.Size = new System.Drawing.Size(165, 22);
+            this.m_textbox_to.Size = new System.Drawing.Size(231, 26);
             this.m_textbox_to.TabIndex = 26;
             // 
             // m_button_all_send
@@ -1009,9 +1023,9 @@ namespace SendNewsLetter
             this.m_button_all_send.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_button_all_send.ForeColor = System.Drawing.Color.Red;
             this.m_button_all_send.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_button_all_send.Location = new System.Drawing.Point(595, 641);
+            this.m_button_all_send.Location = new System.Drawing.Point(457, 621);
             this.m_button_all_send.Name = "m_button_all_send";
-            this.m_button_all_send.Size = new System.Drawing.Size(234, 29);
+            this.m_button_all_send.Size = new System.Drawing.Size(328, 37);
             this.m_button_all_send.TabIndex = 32;
             this.m_button_all_send.Text = "Send all newsletters";
             this.m_button_all_send.UseVisualStyleBackColor = false;
@@ -1023,9 +1037,9 @@ namespace SendNewsLetter
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_label_to.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_label_to.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_label_to.Location = new System.Drawing.Point(275, 535);
+            this.m_label_to.Location = new System.Drawing.Point(385, 489);
             this.m_label_to.Name = "m_label_to";
-            this.m_label_to.Size = new System.Drawing.Size(434, 15);
+            this.m_label_to.Size = new System.Drawing.Size(232, 19);
             this.m_label_to.TabIndex = 24;
             this.m_label_to.Text = "To";
             // 
@@ -1033,9 +1047,9 @@ namespace SendNewsLetter
             // 
             this.m_label_subject.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_label_subject.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_label_subject.Location = new System.Drawing.Point(17, 112);
+            this.m_label_subject.Location = new System.Drawing.Point(24, 140);
             this.m_label_subject.Name = "m_label_subject";
-            this.m_label_subject.Size = new System.Drawing.Size(118, 17);
+            this.m_label_subject.Size = new System.Drawing.Size(165, 21);
             this.m_label_subject.TabIndex = 13;
             this.m_label_subject.Text = "Subject";
             // 
@@ -1046,9 +1060,9 @@ namespace SendNewsLetter
             this.m_textbox_subject.BackColor = System.Drawing.Color.Black;
             this.m_textbox_subject.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_textbox_subject.ForeColor = System.Drawing.Color.Red;
-            this.m_textbox_subject.Location = new System.Drawing.Point(9, 133);
+            this.m_textbox_subject.Location = new System.Drawing.Point(13, 166);
             this.m_textbox_subject.Name = "m_textbox_subject";
-            this.m_textbox_subject.Size = new System.Drawing.Size(889, 22);
+            this.m_textbox_subject.Size = new System.Drawing.Size(868, 26);
             this.m_textbox_subject.TabIndex = 14;
             this.m_textbox_subject.TextChanged += new System.EventHandler(this.m_textbox_subject_TextChanged);
             // 
@@ -1060,9 +1074,9 @@ namespace SendNewsLetter
             this.m_rich_textbox_body.BackColor = System.Drawing.Color.White;
             this.m_rich_textbox_body.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_rich_textbox_body.ForeColor = System.Drawing.Color.Black;
-            this.m_rich_textbox_body.Location = new System.Drawing.Point(264, 191);
+            this.m_rich_textbox_body.Location = new System.Drawing.Point(370, 239);
             this.m_rich_textbox_body.Name = "m_rich_textbox_body";
-            this.m_rich_textbox_body.Size = new System.Drawing.Size(662, 288);
+            this.m_rich_textbox_body.Size = new System.Drawing.Size(550, 180);
             this.m_rich_textbox_body.TabIndex = 21;
             this.m_rich_textbox_body.Text = "";
             this.m_rich_textbox_body.MouseDown += new System.Windows.Forms.MouseEventHandler(this.rtbBody_MouseDown);
@@ -1096,9 +1110,9 @@ namespace SendNewsLetter
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_label_from.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_label_from.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_label_from.Location = new System.Drawing.Point(456, 535);
+            this.m_label_from.Location = new System.Drawing.Point(638, 489);
             this.m_label_from.Name = "m_label_from";
-            this.m_label_from.Size = new System.Drawing.Size(434, 19);
+            this.m_label_from.Size = new System.Drawing.Size(232, 23);
             this.m_label_from.TabIndex = 25;
             this.m_label_from.Text = "From";
             // 
@@ -1106,9 +1120,9 @@ namespace SendNewsLetter
             // 
             this.m_label_poster.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_label_poster.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_label_poster.Location = new System.Drawing.Point(16, 167);
+            this.m_label_poster.Location = new System.Drawing.Point(22, 209);
             this.m_label_poster.Name = "m_label_poster";
-            this.m_label_poster.Size = new System.Drawing.Size(48, 16);
+            this.m_label_poster.Size = new System.Drawing.Size(68, 20);
             this.m_label_poster.TabIndex = 16;
             this.m_label_poster.Text = "Poster";
             // 
@@ -1117,9 +1131,9 @@ namespace SendNewsLetter
             this.m_picture_logo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.m_picture_logo.BackColor = System.Drawing.Color.Black;
             this.m_picture_logo.Image = ((System.Drawing.Image)(resources.GetObject("m_picture_logo.Image")));
-            this.m_picture_logo.Location = new System.Drawing.Point(243, 1);
+            this.m_picture_logo.Location = new System.Drawing.Point(152, 1);
             this.m_picture_logo.Name = "m_picture_logo";
-            this.m_picture_logo.Size = new System.Drawing.Size(287, 39);
+            this.m_picture_logo.Size = new System.Drawing.Size(402, 49);
             this.m_picture_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.m_picture_logo.TabIndex = 15;
             this.m_picture_logo.TabStop = false;
@@ -1132,9 +1146,9 @@ namespace SendNewsLetter
             this.m_button_ende.FlatAppearance.BorderSize = 2;
             this.m_button_ende.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_button_ende.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_button_ende.Location = new System.Drawing.Point(865, 681);
+            this.m_button_ende.Location = new System.Drawing.Point(835, 671);
             this.m_button_ende.Name = "m_button_ende";
-            this.m_button_ende.Size = new System.Drawing.Size(63, 27);
+            this.m_button_ende.Size = new System.Drawing.Size(88, 34);
             this.m_button_ende.TabIndex = 33;
             this.m_button_ende.Text = "End";
             this.m_button_ende.UseVisualStyleBackColor = false;
@@ -1148,9 +1162,9 @@ namespace SendNewsLetter
             this.m_textbox_message.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.m_textbox_message.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_textbox_message.ForeColor = System.Drawing.Color.Red;
-            this.m_textbox_message.Location = new System.Drawing.Point(12, 688);
+            this.m_textbox_message.Location = new System.Drawing.Point(17, 680);
             this.m_textbox_message.Name = "m_textbox_message";
-            this.m_textbox_message.Size = new System.Drawing.Size(841, 15);
+            this.m_textbox_message.Size = new System.Drawing.Size(801, 19);
             this.m_textbox_message.TabIndex = 31;
             // 
             // m_label_test_address
@@ -1158,9 +1172,9 @@ namespace SendNewsLetter
             this.m_label_test_address.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.m_label_test_address.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_label_test_address.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.m_label_test_address.Location = new System.Drawing.Point(275, 582);
+            this.m_label_test_address.Location = new System.Drawing.Point(385, 548);
             this.m_label_test_address.Name = "m_label_test_address";
-            this.m_label_test_address.Size = new System.Drawing.Size(210, 16);
+            this.m_label_test_address.Size = new System.Drawing.Size(294, 20);
             this.m_label_test_address.TabIndex = 28;
             this.m_label_test_address.Text = "Test address";
             // 
@@ -1172,9 +1186,9 @@ namespace SendNewsLetter
             this.m_button_test_send.FlatAppearance.BorderSize = 2;
             this.m_button_test_send.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_button_test_send.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_button_test_send.Location = new System.Drawing.Point(733, 600);
+            this.m_button_test_send.Location = new System.Drawing.Point(650, 570);
             this.m_button_test_send.Name = "m_button_test_send";
-            this.m_button_test_send.Size = new System.Drawing.Size(198, 27);
+            this.m_button_test_send.Size = new System.Drawing.Size(277, 34);
             this.m_button_test_send.TabIndex = 30;
             this.m_button_test_send.Text = "Send a test newsletter";
             this.m_button_test_send.UseVisualStyleBackColor = false;
@@ -1184,9 +1198,9 @@ namespace SendNewsLetter
             // 
             this.labelText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelText.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelText.Location = new System.Drawing.Point(275, 166);
+            this.labelText.Location = new System.Drawing.Point(385, 208);
             this.labelText.Name = "labelText";
-            this.labelText.Size = new System.Drawing.Size(48, 16);
+            this.labelText.Size = new System.Drawing.Size(67, 20);
             this.labelText.TabIndex = 18;
             this.labelText.Text = "Text";
             // 
@@ -1196,9 +1210,9 @@ namespace SendNewsLetter
             this.m_date_time_picker.CalendarForeColor = System.Drawing.Color.Red;
             this.m_date_time_picker.CalendarTitleForeColor = System.Drawing.Color.Red;
             this.m_date_time_picker.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_date_time_picker.Location = new System.Drawing.Point(9, 79);
+            this.m_date_time_picker.Location = new System.Drawing.Point(13, 99);
             this.m_date_time_picker.Name = "m_date_time_picker";
-            this.m_date_time_picker.Size = new System.Drawing.Size(56, 22);
+            this.m_date_time_picker.Size = new System.Drawing.Size(78, 26);
             this.m_date_time_picker.TabIndex = 8;
             this.m_date_time_picker.ValueChanged += new System.EventHandler(this.m_date_time_picker_ValueChanged);
             // 
@@ -1208,10 +1222,10 @@ namespace SendNewsLetter
             this.m_combo_box_hour.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_combo_box_hour.ForeColor = System.Drawing.Color.Red;
             this.m_combo_box_hour.FormattingEnabled = true;
-            this.m_combo_box_hour.Location = new System.Drawing.Point(78, 79);
+            this.m_combo_box_hour.Location = new System.Drawing.Point(109, 99);
             this.m_combo_box_hour.Name = "m_combo_box_hour";
             this.m_combo_box_hour.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.m_combo_box_hour.Size = new System.Drawing.Size(42, 24);
+            this.m_combo_box_hour.Size = new System.Drawing.Size(59, 27);
             this.m_combo_box_hour.TabIndex = 9;
             this.m_combo_box_hour.SelectedIndexChanged += new System.EventHandler(this.m_combo_box_hour_SelectedIndexChanged);
             // 
@@ -1221,9 +1235,9 @@ namespace SendNewsLetter
             this.m_combo_box_minute.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_combo_box_minute.ForeColor = System.Drawing.Color.Red;
             this.m_combo_box_minute.FormattingEnabled = true;
-            this.m_combo_box_minute.Location = new System.Drawing.Point(131, 79);
+            this.m_combo_box_minute.Location = new System.Drawing.Point(183, 99);
             this.m_combo_box_minute.Name = "m_combo_box_minute";
-            this.m_combo_box_minute.Size = new System.Drawing.Size(42, 24);
+            this.m_combo_box_minute.Size = new System.Drawing.Size(59, 27);
             this.m_combo_box_minute.TabIndex = 10;
             this.m_combo_box_minute.SelectedIndexChanged += new System.EventHandler(this.m_combo_box_minute_SelectedIndexChanged);
             // 
@@ -1231,9 +1245,9 @@ namespace SendNewsLetter
             // 
             this.m_label_datum.AutoSize = true;
             this.m_label_datum.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_label_datum.Location = new System.Drawing.Point(17, 59);
+            this.m_label_datum.Location = new System.Drawing.Point(24, 74);
             this.m_label_datum.Name = "m_label_datum";
-            this.m_label_datum.Size = new System.Drawing.Size(37, 16);
+            this.m_label_datum.Size = new System.Drawing.Size(45, 19);
             this.m_label_datum.TabIndex = 5;
             this.m_label_datum.Text = "Date";
             // 
@@ -1241,9 +1255,9 @@ namespace SendNewsLetter
             // 
             this.m_label_zeit.AutoSize = true;
             this.m_label_zeit.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_label_zeit.Location = new System.Drawing.Point(105, 59);
+            this.m_label_zeit.Location = new System.Drawing.Point(147, 74);
             this.m_label_zeit.Name = "m_label_zeit";
-            this.m_label_zeit.Size = new System.Drawing.Size(40, 16);
+            this.m_label_zeit.Size = new System.Drawing.Size(46, 19);
             this.m_label_zeit.TabIndex = 6;
             this.m_label_zeit.Text = "Time";
             // 
@@ -1251,9 +1265,9 @@ namespace SendNewsLetter
             // 
             this.m_label_colone.AutoSize = true;
             this.m_label_colone.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_label_colone.Location = new System.Drawing.Point(121, 80);
+            this.m_label_colone.Location = new System.Drawing.Point(169, 100);
             this.m_label_colone.Name = "m_label_colone";
-            this.m_label_colone.Size = new System.Drawing.Size(12, 16);
+            this.m_label_colone.Size = new System.Drawing.Size(15, 19);
             this.m_label_colone.TabIndex = 11;
             this.m_label_colone.Text = ":";
             // 
@@ -1264,9 +1278,9 @@ namespace SendNewsLetter
             this.m_text_box_band.BackColor = System.Drawing.Color.Black;
             this.m_text_box_band.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_text_box_band.ForeColor = System.Drawing.Color.Red;
-            this.m_text_box_band.Location = new System.Drawing.Point(185, 81);
+            this.m_text_box_band.Location = new System.Drawing.Point(259, 101);
             this.m_text_box_band.Name = "m_text_box_band";
-            this.m_text_box_band.Size = new System.Drawing.Size(746, 22);
+            this.m_text_box_band.Size = new System.Drawing.Size(668, 26);
             this.m_text_box_band.TabIndex = 12;
             this.m_text_box_band.TextChanged += new System.EventHandler(this.m_text_box_band_TextChanged);
             // 
@@ -1274,9 +1288,9 @@ namespace SendNewsLetter
             // 
             this.m_label_band.AutoSize = true;
             this.m_label_band.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_label_band.Location = new System.Drawing.Point(196, 59);
+            this.m_label_band.Location = new System.Drawing.Point(274, 74);
             this.m_label_band.Name = "m_label_band";
-            this.m_label_band.Size = new System.Drawing.Size(41, 16);
+            this.m_label_band.Size = new System.Drawing.Size(50, 19);
             this.m_label_band.TabIndex = 7;
             this.m_label_band.Text = "Band";
             // 
@@ -1288,10 +1302,10 @@ namespace SendNewsLetter
             this.m_combo_box_from.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_combo_box_from.ForeColor = System.Drawing.Color.Red;
             this.m_combo_box_from.FormattingEnabled = true;
-            this.m_combo_box_from.Location = new System.Drawing.Point(443, 553);
+            this.m_combo_box_from.Location = new System.Drawing.Point(620, 511);
             this.m_combo_box_from.Margin = new System.Windows.Forms.Padding(0);
             this.m_combo_box_from.Name = "m_combo_box_from";
-            this.m_combo_box_from.Size = new System.Drawing.Size(486, 24);
+            this.m_combo_box_from.Size = new System.Drawing.Size(305, 27);
             this.m_combo_box_from.TabIndex = 27;
             // 
             // m_button_subject_combine
@@ -1302,9 +1316,9 @@ namespace SendNewsLetter
             this.m_button_subject_combine.FlatAppearance.BorderSize = 2;
             this.m_button_subject_combine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_button_subject_combine.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_button_subject_combine.Location = new System.Drawing.Point(906, 132);
+            this.m_button_subject_combine.Location = new System.Drawing.Point(892, 165);
             this.m_button_subject_combine.Name = "m_button_subject_combine";
-            this.m_button_subject_combine.Size = new System.Drawing.Size(24, 23);
+            this.m_button_subject_combine.Size = new System.Drawing.Size(34, 29);
             this.m_button_subject_combine.TabIndex = 15;
             this.m_button_subject_combine.Text = "U";
             this.m_button_subject_combine.UseVisualStyleBackColor = false;
@@ -1316,10 +1330,10 @@ namespace SendNewsLetter
             this.m_combo_box_pics.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_combo_box_pics.ForeColor = System.Drawing.Color.Red;
             this.m_combo_box_pics.FormattingEnabled = true;
-            this.m_combo_box_pics.Location = new System.Drawing.Point(12, 191);
+            this.m_combo_box_pics.Location = new System.Drawing.Point(17, 239);
             this.m_combo_box_pics.Margin = new System.Windows.Forms.Padding(0);
             this.m_combo_box_pics.Name = "m_combo_box_pics";
-            this.m_combo_box_pics.Size = new System.Drawing.Size(228, 24);
+            this.m_combo_box_pics.Size = new System.Drawing.Size(319, 27);
             this.m_combo_box_pics.TabIndex = 20;
             this.m_combo_box_pics.SelectedIndexChanged += new System.EventHandler(this.m_combo_box_pics_SelectedIndexChanged);
             // 
@@ -1331,18 +1345,18 @@ namespace SendNewsLetter
             this.m_combo_box_bcc_test.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_combo_box_bcc_test.ForeColor = System.Drawing.Color.Red;
             this.m_combo_box_bcc_test.FormattingEnabled = true;
-            this.m_combo_box_bcc_test.Location = new System.Drawing.Point(264, 601);
+            this.m_combo_box_bcc_test.Location = new System.Drawing.Point(370, 571);
             this.m_combo_box_bcc_test.Margin = new System.Windows.Forms.Padding(0);
             this.m_combo_box_bcc_test.Name = "m_combo_box_bcc_test";
-            this.m_combo_box_bcc_test.Size = new System.Drawing.Size(466, 24);
+            this.m_combo_box_bcc_test.Size = new System.Drawing.Size(276, 27);
             this.m_combo_box_bcc_test.TabIndex = 29;
             // 
             // m_picture_box
             // 
             this.m_picture_box.BackgroundImage = global::SendNewsLetter.Properties.Resources.PosterWithoutPicture;
-            this.m_picture_box.Location = new System.Drawing.Point(19, 233);
+            this.m_picture_box.Location = new System.Drawing.Point(27, 291);
             this.m_picture_box.Name = "m_picture_box";
-            this.m_picture_box.Size = new System.Drawing.Size(218, 293);
+            this.m_picture_box.Size = new System.Drawing.Size(305, 367);
             this.m_picture_box.TabIndex = 34;
             this.m_picture_box.TabStop = false;
             // 
@@ -1352,9 +1366,9 @@ namespace SendNewsLetter
             | System.Windows.Forms.AnchorStyles.Right)));
             this.m_rich_text_box_black.BackColor = System.Drawing.Color.Black;
             this.m_rich_text_box_black.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.m_rich_text_box_black.Location = new System.Drawing.Point(5, 6);
+            this.m_rich_text_box_black.Location = new System.Drawing.Point(7, 8);
             this.m_rich_text_box_black.Name = "m_rich_text_box_black";
-            this.m_rich_text_box_black.Size = new System.Drawing.Size(933, 58);
+            this.m_rich_text_box_black.Size = new System.Drawing.Size(930, 72);
             this.m_rich_text_box_black.TabIndex = 0;
             this.m_rich_text_box_black.Text = "";
             // 
@@ -1366,10 +1380,10 @@ namespace SendNewsLetter
             this.m_combo_box_attachment.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_combo_box_attachment.ForeColor = System.Drawing.Color.Red;
             this.m_combo_box_attachment.FormattingEnabled = true;
-            this.m_combo_box_attachment.Location = new System.Drawing.Point(264, 506);
+            this.m_combo_box_attachment.Location = new System.Drawing.Point(370, 452);
             this.m_combo_box_attachment.Margin = new System.Windows.Forms.Padding(0);
             this.m_combo_box_attachment.Name = "m_combo_box_attachment";
-            this.m_combo_box_attachment.Size = new System.Drawing.Size(666, 24);
+            this.m_combo_box_attachment.Size = new System.Drawing.Size(231, 27);
             this.m_combo_box_attachment.TabIndex = 23;
             this.m_combo_box_attachment.SelectedIndexChanged += new System.EventHandler(this.m_combo_box_attachment_SelectedIndexChanged);
             // 
@@ -1378,9 +1392,9 @@ namespace SendNewsLetter
             this.m_label_attachment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.m_label_attachment.AutoSize = true;
             this.m_label_attachment.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_label_attachment.Location = new System.Drawing.Point(275, 486);
+            this.m_label_attachment.Location = new System.Drawing.Point(385, 428);
             this.m_label_attachment.Name = "m_label_attachment";
-            this.m_label_attachment.Size = new System.Drawing.Size(80, 16);
+            this.m_label_attachment.Size = new System.Drawing.Size(99, 19);
             this.m_label_attachment.TabIndex = 22;
             this.m_label_attachment.Text = "Attachment";
             // 
@@ -1390,9 +1404,9 @@ namespace SendNewsLetter
             this.m_button_help.BackColor = System.Drawing.SystemColors.WindowText;
             this.m_button_help.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_button_help.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.m_button_help.Location = new System.Drawing.Point(893, 5);
+            this.m_button_help.Location = new System.Drawing.Point(874, 6);
             this.m_button_help.Name = "m_button_help";
-            this.m_button_help.Size = new System.Drawing.Size(40, 21);
+            this.m_button_help.Size = new System.Drawing.Size(56, 26);
             this.m_button_help.TabIndex = 3;
             this.m_button_help.Text = "Help";
             this.m_button_help.UseVisualStyleBackColor = false;
@@ -1404,9 +1418,9 @@ namespace SendNewsLetter
             this.m_button_edit_config.BackColor = System.Drawing.SystemColors.WindowText;
             this.m_button_edit_config.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_button_edit_config.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.m_button_edit_config.Location = new System.Drawing.Point(778, 5);
+            this.m_button_edit_config.Location = new System.Drawing.Point(713, 6);
             this.m_button_edit_config.Name = "m_button_edit_config";
-            this.m_button_edit_config.Size = new System.Drawing.Size(40, 21);
+            this.m_button_edit_config.Size = new System.Drawing.Size(56, 26);
             this.m_button_edit_config.TabIndex = 1;
             this.m_button_edit_config.Text = "Edit";
             this.m_button_edit_config.UseVisualStyleBackColor = false;
@@ -1418,9 +1432,9 @@ namespace SendNewsLetter
             this.m_button_update.BackColor = System.Drawing.SystemColors.WindowText;
             this.m_button_update.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_button_update.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.m_button_update.Location = new System.Drawing.Point(819, 5);
+            this.m_button_update.Location = new System.Drawing.Point(771, 6);
             this.m_button_update.Name = "m_button_update";
-            this.m_button_update.Size = new System.Drawing.Size(70, 21);
+            this.m_button_update.Size = new System.Drawing.Size(98, 26);
             this.m_button_update.TabIndex = 2;
             this.m_button_update.Text = "Download";
             this.m_button_update.UseVisualStyleBackColor = false;
@@ -1432,9 +1446,9 @@ namespace SendNewsLetter
             this.m_checkbox_only_down_loaded_pics.Checked = true;
             this.m_checkbox_only_down_loaded_pics.CheckState = System.Windows.Forms.CheckState.Checked;
             this.m_checkbox_only_down_loaded_pics.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_checkbox_only_down_loaded_pics.Location = new System.Drawing.Point(91, 167);
+            this.m_checkbox_only_down_loaded_pics.Location = new System.Drawing.Point(127, 209);
             this.m_checkbox_only_down_loaded_pics.Name = "m_checkbox_only_down_loaded_pics";
-            this.m_checkbox_only_down_loaded_pics.Size = new System.Drawing.Size(139, 20);
+            this.m_checkbox_only_down_loaded_pics.Size = new System.Drawing.Size(167, 23);
             this.m_checkbox_only_down_loaded_pics.TabIndex = 17;
             this.m_checkbox_only_down_loaded_pics.Text = "Only downloaded";
             this.m_checkbox_only_down_loaded_pics.UseVisualStyleBackColor = true;
@@ -1446,9 +1460,9 @@ namespace SendNewsLetter
             this.m_label_version.BackColor = System.Drawing.Color.Black;
             this.m_label_version.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.m_label_version.ForeColor = System.Drawing.Color.Red;
-            this.m_label_version.Location = new System.Drawing.Point(16, 34);
+            this.m_label_version.Location = new System.Drawing.Point(22, 42);
             this.m_label_version.Name = "m_label_version";
-            this.m_label_version.Size = new System.Drawing.Size(69, 15);
+            this.m_label_version.Size = new System.Drawing.Size(81, 17);
             this.m_label_version.TabIndex = 4;
             this.m_label_version.Text = "Version 3.7";
             // 
@@ -1458,19 +1472,44 @@ namespace SendNewsLetter
             this.m_checkbox_with_reservation_text.Checked = true;
             this.m_checkbox_with_reservation_text.CheckState = System.Windows.Forms.CheckState.Checked;
             this.m_checkbox_with_reservation_text.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.m_checkbox_with_reservation_text.Location = new System.Drawing.Point(510, 165);
+            this.m_checkbox_with_reservation_text.Location = new System.Drawing.Point(714, 206);
             this.m_checkbox_with_reservation_text.Name = "m_checkbox_with_reservation_text";
-            this.m_checkbox_with_reservation_text.Size = new System.Drawing.Size(132, 20);
+            this.m_checkbox_with_reservation_text.Size = new System.Drawing.Size(164, 23);
             this.m_checkbox_with_reservation_text.TabIndex = 19;
             this.m_checkbox_with_reservation_text.Text = "Reservationstext";
             this.m_checkbox_with_reservation_text.UseVisualStyleBackColor = true;
             // 
+            // m_textbox_premises
+            // 
+            this.m_textbox_premises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.m_textbox_premises.BackColor = System.Drawing.Color.Black;
+            this.m_textbox_premises.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_textbox_premises.ForeColor = System.Drawing.Color.Red;
+            this.m_textbox_premises.Location = new System.Drawing.Point(620, 452);
+            this.m_textbox_premises.Name = "m_textbox_premises";
+            this.m_textbox_premises.Size = new System.Drawing.Size(303, 26);
+            this.m_textbox_premises.TabIndex = 35;
+            // 
+            // m_label_premises
+            // 
+            this.m_label_premises.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.m_label_premises.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.m_label_premises.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.m_label_premises.Location = new System.Drawing.Point(634, 428);
+            this.m_label_premises.Name = "m_label_premises";
+            this.m_label_premises.Size = new System.Drawing.Size(232, 19);
+            this.m_label_premises.TabIndex = 36;
+            this.m_label_premises.Text = "Lokal";
+            // 
             // NewsletterForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 12);
+            this.AutoScaleBaseSize = new System.Drawing.Size(7, 15);
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(941, 718);
             this.ControlBox = false;
+            this.Controls.Add(this.m_label_premises);
+            this.Controls.Add(this.m_textbox_premises);
             this.Controls.Add(this.m_checkbox_with_reservation_text);
             this.Controls.Add(this.m_label_version);
             this.Controls.Add(this.m_checkbox_only_down_loaded_pics);

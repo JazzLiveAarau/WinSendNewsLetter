@@ -236,6 +236,9 @@ namespace SendNewsLetter
 
         #endregion
 
+        /// <summary>Label for premises</summary>
+        public string PremisesLabel = @"Konzertlokal";
+
         /// <summary>Email text information</summary>
         public string EmailInfo = @"Weitere Infos über unser Programm:";
 
@@ -255,7 +258,7 @@ namespace SendNewsLetter
         public string EmailReservationAfterTime = @"vor Konzertbeginn besetzt sein, ansonsten sie freigegeben werden können)";
 
         /// <summary>Email text premise (restaurant)</summary>
-        public string EmailPremise = @"Spaghetti Factory Salmen";
+        public string EmailPremise = @"Spagi by Marcello";
 
         /// <summary>Email end subscription</summary>
         public string EmailEndSubsription = @"Möchten Sie diesen Newsletter nicht mehr erhalten, schreiben Sie uns dies bitte an:";
@@ -282,6 +285,9 @@ namespace SendNewsLetter
 
         /// <summary>GUI Tool tip select poster</summary>
         public string ToolTipCheckBoxPics = @"Nur (gerade) heruntergeladene Plakate oder alle Bilder im Ordner Plakat";
+
+        /// <summary>GUI Tool tip premises</summary>
+        public string ToolTipTextBoxPremises = @"Name und Adresse des Konzertlokals. Kein Text im Newsletter wenn leer.";
 
         /// <summary>GUI Tool tip add reservation text</summary>
         public string ToolTipCheckBoxAddReservation = @"Mit oder ohne Reservationstext";
