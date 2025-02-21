@@ -4,14 +4,14 @@
 AppPublisher=JAZZ live AARAU
 AppPublisherURL=https://jazzliveaarau.ch/
 AppName=JAZZ live AARAU Newsletter
-AppVerName=JAZZ live AARAU Newsletter version 3.20
+AppVerName=JAZZ live AARAU Newsletter version 3.22
 DefaultDirName={sd}\Apps\JazzLiveAarau\Newsletter
 DefaultGroupName=JAZZ live AARAU Newsletter
 UninstallDisplayIcon={app}\SendNewsLetter.exe
 Compression=lzma
 SolidCompression=yes
 OutputDir= NeueVersion
-OutputBaseFilename= SetupJazzLiveAarauNewsletter-version-3-21
+OutputBaseFilename= SetupJazzLiveAarauNewsletter-version-3-22
 
 [Dirs]
 Name: "{app}\Anhang"; Permissions: users-modify

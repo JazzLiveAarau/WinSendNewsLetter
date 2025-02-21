@@ -21,7 +21,7 @@ namespace SendNewsLetter
         #region Member parameters
 
         /// <summary>Server name</summary>
-        public string m_server_name = "smtp.jazzliveaarau.ch";
+        public string m_server_name = "asmtp.mail.hostpoint.ch";
 
         /// <summary>Credential Email addresse</summary>
         public string m_credential_email = "jazzliv6@jazzliveaarau.ch";
@@ -30,7 +30,7 @@ namespace SendNewsLetter
         public string m_credential_passw = "SkickaAlla";
 
          /// <summary>FTP host name</summary>
-        public string m_ftp_host = "www.jazzliveaarau.ch";
+        public string m_ftp_host = "jazzliveaarau.ch";
 
         /// <summary>FTP user</summary>
         public string m_ftp_user = "adressen@jazzliveaarau.ch";
@@ -187,12 +187,6 @@ namespace SendNewsLetter
             return this.m_subject;
         }
 
-        /// <summary>Returns subject as plain text</summary>
-        public string SubjectTxt()
-        {
-            return this.m_subject;
-        }
-
         /// <summary>Returns message as HTML</summary>
         public string MessageHtml()
         {
@@ -202,26 +196,22 @@ namespace SendNewsLetter
             return ret_htm;
         }
 
+        /* 20250221 QQQQQQQQQQQQ
+        /// <summary>Returns subject as plain text</summary>
+        public string SubjectTxt()
+        {
+            return this.m_subject;
+        }
         /// <summary>Returns picture (poster) as HTML</summary>
         public string PictureHtml()
         {
             return "<img src=cid:plakat>" + "<br><br>";
         }
-
+       
         /// <summary>Returns message as plain text</summary>
         public string MessageTxt()
         {
             return this.m_message;
-        }
-
-        /// <summary>Returns info@jazzliveaarau.ch as HTML</summary>
-        public string InfoHtml()
-        {
-            string ret_htm = NewsLetterSettings.Default.EmailInfo + " ";
-            ret_htm = ret_htm + "<a href=https://jazzliveaarau.ch/  target=\"_blank\">jazzliveaarau.ch</a>";
-            ret_htm = ret_htm + " &nbsp;<br><br>";
-
-            return ret_htm;
         }
 
         /// <summary>Returns info@jazzliveaarau.ch as plain text</summary>
@@ -229,25 +219,6 @@ namespace SendNewsLetter
         {
             return NewsLetterSettings.Default.EmailInfo + @" jazzliveaarau.ch";
         }
-
-        /// <summary>Returns premises as HTML</summary>
-        public string PremisesHtml()
-        {
-            string ret_html = @"";
-
-            if (this.m_premises.Length > 0)
-            {
-                ret_html = ret_html + NewsLetterSettings.Default.PremisesLabel + @": ";
-
-                ret_html = ret_html + this.m_premises;
-
-                ret_html = ret_html + " &nbsp;<br><br>";
-            }
-
-            return ret_html;
-
-        } // PremisesHtml
-
         /// <summary>Returns premises as plain text</summary>
         public string PremisesTxt()
         {
@@ -261,18 +232,6 @@ namespace SendNewsLetter
             }
 
         } // PremisesTxt
-
-        /// <summary>Returns www.jazzliveaarau.ch as HTML</summary>
-        public string ReservationInternetHtml()
-        {
-            string ret_htm = NewsLetterSettings.Default.EmailReservations + " ";
-            ret_htm = ret_htm + "<a href=https://jazzliveaarau.ch  target=\"_blank\">Homepage</a>";
-            ret_htm = ret_htm + " &nbsp;<br><br>";
-
-            return ret_htm;
-
-        } // ReservationInternetHtml
-
         /// <summary>Returns info@jazzliveaarau.ch as plain text</summary>
         public string ReservationInternetTxt()
         {
@@ -325,7 +284,55 @@ namespace SendNewsLetter
                 + NewsLetterSettings.Default.EmailReservationTelephone + ".";
             }
         }
+ /// <summary>Returns end subscription Email adresse as plain</summary>
+        public string EndSubscriptionTxt()
+        {
+            string ret_htm = NewsLetterSettings.Default.EmailEndSubsription + " ";
+            ret_htm = ret_htm + NewsLetterSettings.Default.EmailAddressInfo;
 
+            return ret_htm;
+        }
+
+         20250221 QQQQQQQQQQQQ */
+
+        /// <summary>Returns info@jazzliveaarau.ch as HTML</summary>
+        public string InfoHtml()
+        {
+            string ret_htm = NewsLetterSettings.Default.EmailInfo + " ";
+            ret_htm = ret_htm + "<a href=https://jazzliveaarau.ch/  target=\"_blank\">jazzliveaarau.ch</a>";
+            ret_htm = ret_htm + " &nbsp;<br><br>";
+
+            return ret_htm;
+        }
+
+        /// <summary>Returns premises as HTML</summary>
+        public string PremisesHtml()
+        {
+            string ret_html = @"";
+
+            if (this.m_premises.Length > 0)
+            {
+                ret_html = ret_html + NewsLetterSettings.Default.PremisesLabel + @": ";
+
+                ret_html = ret_html + this.m_premises;
+
+                ret_html = ret_html + " &nbsp;<br><br>";
+            }
+
+            return ret_html;
+
+        } // PremisesHtml
+
+        /// <summary>Returns www.jazzliveaarau.ch as HTML</summary>
+        public string ReservationInternetHtml()
+        {
+            string ret_htm = NewsLetterSettings.Default.EmailReservations + " ";
+            ret_htm = ret_htm + "<a href=https://jazzliveaarau.ch  target=\"_blank\">Homepage</a>";
+            ret_htm = ret_htm + " &nbsp;<br><br>";
+
+            return ret_htm;
+
+        } // ReservationInternetHtml
 
         /// <summary>Returns end subscription Email adresse as HTML</summary>
         public string EndSubscriptionHtml()
@@ -336,16 +343,6 @@ namespace SendNewsLetter
 
             return ret_htm;
         }
-
-        /// <summary>Returns end subscription Email adresse as plain</summary>
-        public string EndSubscriptionTxt()
-        {
-            string ret_htm = NewsLetterSettings.Default.EmailEndSubsription + " ";
-            ret_htm = ret_htm + NewsLetterSettings.Default.EmailAddressInfo;
-
-            return ret_htm;
-        }
-
 
         /// <summary>Returns HTML paragraph end</summary>
         public string ParagraphEnd()

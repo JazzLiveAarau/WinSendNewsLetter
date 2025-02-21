@@ -206,52 +206,52 @@ namespace SendNewsLetter
         /// <summary>Main function that sends test newsletter(s) or newsletters to all in the .csv file that has subscribed to the newsletter
         /// <para>1. Check Email input data i_newsletter_data. Call of NewsletterData.Check</para>
         /// <para>2. Get the body HTML text as string. Call of _BodyHtml</para>
-        /// <para>3. Get the body PLAIN text as string. Call of _BodyText</para>
-        /// <para>4. Get Email addresses if i_only_to is false. Call of _GetEmailAdresses.</para>
-        /// <para>5. Create HTLM and PLAIN AlternateView. Calls of AlternateView.CreateAlternateViewFromString</para>
+        /// <para>3. Get Email addresses if i_only_to is false. Call of _GetEmailAdresses.</para>
+        /// <para>4. Create HTLM and PLAIN AlternateView. Calls of AlternateView.CreateAlternateViewFromString</para>
         /// <para>5. Get poster file name. Call of NewsletterData.GetPosterName</para>
-        /// <para>6. Add poster to HTML view. Call of _AddPosterToHtmlView</para>
-        /// <para>7. Create MailMessage instance. Input data is to, from, subject and body text</para>
-        /// <para>8. Add poster as attachment. Call of _AddPosterAsAttachment</para>
-        /// <para>9. Add views HTML and PLAIN body to MailMessage. Calls of MailMessage.AlternateViews.Add</para>
-        /// <para>10. Send Emails. Call of _SendEmails</para>
+        /// <para>6. Create MailMessage instance. Input data is to, from, subject and body text</para>
+        /// <para>7. Add poster as attachment. Call of _AddPosterAsAttachment</para>
+        /// <para>8. Send Emails. Call of _SendEmails</para>
         /// </summary>
         ///  <param name="i_newsletter_data">Holds data for the Emails that shall be sent</param>
         ///  <param name="i_test_send">Flag telling if only test Email(s) shall be sent</param>
-        ///  <param name="i_only_to">Flag telling if an Email shall be sent to only one person</param>
         ///  <param name="o_error">Error message</param>
-        private bool _SendNewsLetter(NewsletterData i_newsletter_data, bool i_test_send, bool i_only_to, out string o_error)
+        
+        //  QQQQQ 20250221 private bool _SendNewsLetter(NewsletterData i_newsletter_data, bool i_test_send, bool i_only_to, out string o_error)
+        private bool _SendNewsLetter(NewsletterData i_newsletter_data, bool i_test_send, out string o_error)
         {
             o_error = "";
 
             if (!i_newsletter_data.Check(out o_error)) return false;
 
             string str_body_html = _BodyHtml(i_newsletter_data);
-            string str_body_text = _BodyText(i_newsletter_data);
+            // QQQQ  20250204 string str_body_text = _BodyText(i_newsletter_data);
 
             string email_adresses = "";
             Stack<string> bcc_email_adresses = new Stack<string>();
-            if (!i_only_to)
-            {
-                if (!_GetEmailAdresses(i_newsletter_data, i_test_send, out email_adresses, ref bcc_email_adresses, out o_error)) return false;
-            }
+ 
+            if (!_GetEmailAdresses(i_newsletter_data, i_test_send, out email_adresses, ref bcc_email_adresses, out o_error)) return false;
 
             string poster_file_name = i_newsletter_data.GetPosterName();
 
-            AlternateView html_view = AlternateView.CreateAlternateViewFromString(str_body_html, null, "text/html");
+            // QQQQ 20250204 AlternateView html_view = AlternateView.CreateAlternateViewFromString(str_body_html, null, "text/html");
 
-            AlternateView plain_view = AlternateView.CreateAlternateViewFromString(str_body_text, null, "text/plain");
+            // QQQQ 20250204 AlternateView plain_view = AlternateView.CreateAlternateViewFromString(str_body_text, null, "text/plain");
 
-            _AddPosterToHtmlView(poster_file_name, ref html_view);
+            // QQQQ 20250204 _AddPosterToHtmlView(poster_file_name, ref html_view);
 
-            MailMessage mail_poster = new MailMessage(i_newsletter_data.m_from, i_newsletter_data.m_to, i_newsletter_data.m_subject, str_body_text);
+            // QQQQ 20250204 MailMessage mail_poster = new MailMessage(i_newsletter_data.m_from, i_newsletter_data.m_to, i_newsletter_data.m_subject, str_body_text);
+
+            MailMessage mail_poster = new MailMessage(i_newsletter_data.m_from, i_newsletter_data.m_to, i_newsletter_data.m_subject, str_body_html);
+
+            mail_poster.IsBodyHtml = true; // 20250204
 
             _AddPosterAsAttachment(poster_file_name, ref mail_poster);
 
             _AddAttachment(i_newsletter_data.GetAttachmentName(), ref mail_poster);
-            
-            mail_poster.AlternateViews.Add(html_view);
-            // mail_poster.AlternateViews.Add(plain_view);
+
+            // QQQQQ 20250204 mail_poster.AlternateViews.Add(html_view);
+            // QQQQ  mail_poster.AlternateViews.Add(plain_view);
 
             if (!_SendEmails(i_newsletter_data, bcc_email_adresses, i_test_send, ref mail_poster, out o_error)) return false;
 
@@ -282,6 +282,7 @@ namespace SendNewsLetter
             SmtpClient smtp_client = new SmtpClient(i_newsletter_data.m_server_name);
             smtp_client.Credentials = new NetworkCredential(i_newsletter_data.m_credential_email, i_newsletter_data.m_credential_passw);
             smtp_client.Port = 587; // Default port 25 cannot be used in Sweden. The Internet provider Hostpoint solved this problem
+            smtp_client.EnableSsl = true; // 20250221
 
             int n_bcc_batch = 60;
             int i_bcc_batch = 0;
@@ -457,6 +458,7 @@ namespace SendNewsLetter
             return true;
         }
 
+        /* 20250221 QQQQQQQQ
         /// <summary>Add link to poster</summary>
         private void _AddPosterToHtmlView(string i_poster_file_name, ref AlternateView io_html_view)
         {
@@ -469,6 +471,8 @@ namespace SendNewsLetter
             poster.ContentId = "plakat";
             io_html_view.LinkedResources.Add(poster);
         }
+
+        20250221 QQQQQQQQ */
 
         /// <summary>Add poster as attachement</summary>
         private void _AddPosterAsAttachment(string i_poster_file_name, ref MailMessage o_mail_poster)
@@ -649,17 +653,17 @@ namespace SendNewsLetter
 
             ret_body_html = ret_body_html + i_newsletter_data.ParagraphStart();
 
-            //ret_body_html = ret_body_html + i_newsletter_data.SubjectHtml();
-            //ret_body_html = ret_body_html + "<br><br>";
+            // QQQQQ ret_body_html = ret_body_html + i_newsletter_data.SubjectHtml();
+            // QQQQQ ret_body_html = ret_body_html + "<br><br>";
 
             ret_body_html = ret_body_html + i_newsletter_data.MessageHtml();
             ret_body_html = ret_body_html + "<br>";
 
-            if (i_newsletter_data.GetPosterName() != "" && SendNewsLetter.NewsLetterSettings.Default.PosterEmbedded)
-            {
-                ret_body_html = ret_body_html + i_newsletter_data.PictureHtml();
-                ret_body_html = ret_body_html + "<br>";
-            }
+            //  QQQQQ 20250204 if (i_newsletter_data.GetPosterName() != "" && SendNewsLetter.NewsLetterSettings.Default.PosterEmbedded)
+            //  QQQQQ 20250204 {
+            //  QQQQQ 20250204 ret_body_html = ret_body_html + i_newsletter_data.PictureHtml();
+            //  QQQQQ 20250204 ret_body_html = ret_body_html + "<br>";
+            //  QQQQQ 20250204 }
 
             if (i_newsletter_data.PremisesHtml().Length > 0)
             {
@@ -673,7 +677,7 @@ namespace SendNewsLetter
 
             if (i_newsletter_data.AddReservationText)
             {
-                // ret_body_html = ret_body_html + i_newsletter_data.ReservationHtml();
+                // QQQQQ ret_body_html = ret_body_html + i_newsletter_data.ReservationHtml();
                 ret_body_html = ret_body_html + i_newsletter_data.ReservationInternetHtml();               
                 ret_body_html = ret_body_html + "<br>";
             }
@@ -687,6 +691,7 @@ namespace SendNewsLetter
 
         } // _BodyHtml
 
+        /* QQQQQQ  20250221
         /// <summary> Returns the body plain text</summary>
         private string _BodyText(NewsletterData i_newsletter_data)
         {
@@ -721,6 +726,7 @@ namespace SendNewsLetter
             return ret_body_txt;
 
         } // _BodyTxt
+         QQQQQQ  20250221 */
 
         /// <summary>Constructor creating config file if not existing.</summary>
         public NewsletterMain()
@@ -741,8 +747,8 @@ namespace SendNewsLetter
             o_error = "";
 
             bool b_test_send = false;
-            bool b_only_to = false;
-            if (!_SendNewsLetter(i_newsletter_data, b_test_send, b_only_to, out o_error)) 
+            // QQQQQQ 20250221 bool b_only_to = false;
+            if (!_SendNewsLetter(i_newsletter_data, b_test_send, out o_error)) 
                 return false;
 
             return true;
@@ -757,14 +763,15 @@ namespace SendNewsLetter
         {
             o_error = "";
             bool b_test_send = true;
-            bool b_only_to = false;
-            if (!_SendNewsLetter(i_newsletter_data, b_test_send, b_only_to, out o_error))
+            // QQQQQQ 20250221 bool b_only_to = false;
+            if (!_SendNewsLetter(i_newsletter_data, b_test_send, out o_error))
                 return false;
 
             return true;
 
         } // SendNewsLetterTest
 
+        /* 20250221 QQQQQQQQQQQQQQQ
         /// <summary>Send newsletter only to one person (to To)
         /// <para>1. Send the Email. Call of _SendNewsLetter with input flags set to one person.</para>
         /// </summary>
@@ -780,6 +787,8 @@ namespace SendNewsLetter
 
             return true;
         } // SendNewsLetterAll
+
+        20250221 QQQQQQQQQQQQQQQ */
 
     } // NewsletterMain
 } // namespace

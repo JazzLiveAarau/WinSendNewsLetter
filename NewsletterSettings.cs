@@ -45,8 +45,8 @@ namespace SendNewsLetter
         /// <summary>Test Email addresses file in directory DirExcel</summary>
         public string FileExcelTest = @"test_email.csv";
 
-        /// <summary>Flag telling if the poster (picture) shall be embedded in the mail</summary>
-        public bool PosterEmbedded = true;
+        // <summary>Flag telling if the poster (picture) shall be embedded in the mail</summary>
+       // QQQQ 20250221 public bool PosterEmbedded = true;
 
         /// <summary>Flag telling if the poster (picture) shall be attached to the mail</summary>
         public bool PosterAttached = true;
@@ -58,7 +58,7 @@ namespace SendNewsLetter
         public string SubjectStartText = "JAZZ live AARAU Konzert";
 
         /// <summary>FTP host</summary>
-        public string FtpHost = "www.jazzliveaarau.ch";
+        public string FtpHost = "jazzliveaarau.ch";
 
         /// <summary>FTP user</summary>
         public string FtpUser = "jazzliv1";

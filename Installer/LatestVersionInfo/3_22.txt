@@ -1,0 +1,6 @@
+﻿File: n_m.txt
+Date: 2017-03-26
+The name of this file defines the current (latest) version of the JAZZ live AARAU Newsletter Application.
+At start of the JAZZ live AARAU Newsletter Application this file will be downloaded from the server.
+The server directory is: LatestVersionInfo.
+A complete version name is n.m.k.l. This application only uses m.n
